@@ -12,7 +12,12 @@ module.exports = function(Report) {
 	require('../../server/remotemethod-public')(Report);
 
 	Report.getRecentReports = async () => {
-		var response = await Report.find({ limit: 10 });
+		var fields = {
+			active: true, 
+			price: true, 
+			description: true
+		}
+		var response = await Report.find({fields, limit: 10 });
 		return response.length;
 	};
 	
